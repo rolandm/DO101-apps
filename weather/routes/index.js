@@ -19,10 +19,10 @@ router.post('/get_weather', async function (req,res) {
     let weather = await data.json();
     console.log(weather);
     if(weather.cod == '404' && weather.main == undefined) {
-      res.render('index', {weather: null, error: 'Error: Unknown city'});
+      res.render('index', {weather: null, error: 'Error: Unknown city ' + city});
     }
     else if (weather.cod == '401' && weather.main == undefined) {
-      res.render('index', {weather: null, error: 'Error: Invalid API Key. Please see http://openweathermap.org/faq#error401 for more info.'});
+      res.render('index', {weather: null, error: 'Error: Invalid API Key. Please see http://openweathermap.org/faq#error401 for more info. url=' + url});
     }
     else {
       let unit_hex = (UNITS == 'imperial') ? '&#8457' : '&#8451';
